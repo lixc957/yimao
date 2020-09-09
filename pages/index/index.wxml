@@ -1,0 +1,60 @@
+<view class="home">
+  <SearchInput />
+  <!-- 轮播图 -->
+  <view class="home-swiper">
+    <swiper indicator-dots autoplay interval="2500" circular>
+      <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+        <navigator url="{{item.navigator_url}}">
+          <image src="{{item.image_src}}" mode="widthFix" />
+        </navigator>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 轮播图结束 -->
+
+  <!-- 分类导航 -->
+  <view class="home-cate">
+    <navigator 
+    hover-class="none" 
+    open-type="switchTab"
+    wx:for="{{cateList}}"
+    wx:key="name"
+    url="/pages/category/index"
+    >
+      <image src="{{item.image_src}}" mode="widthFix" />    
+    </navigator>
+  </view> 
+  <!-- 分类导航结束 -->
+
+  <!-- 楼层 -->
+  <view class="home-floor">
+
+    <view class="floor-group"
+    wx:for="{{floorList}}"
+    wx:key="floor_title"
+    >
+      <!-- 标题 -->
+      <view class="floor-title">
+        <image src="{{item.floor_title.image_src}}" mode="widthFix" />    
+      </view>
+      <!-- 标题结束 -->
+      <!-- 内容 -->
+      <view class="floor-list">
+        <navigator 
+        hover-class="none" 
+        open-type="switchTab"
+        wx:for="{{item.product_list}}"
+        wx:for-item="itemy"
+        wx:for-index="indey"
+        wx:key="name"
+        url="{{indey.navigator_url}}"
+        >
+          <image src="{{itemy.image_src}}" mode="{{indey===0?'widthFix':'scaleToFill'}}" />   
+        </navigator>  
+      </view>
+      <!-- 内容结束 -->
+    </view>
+      
+  </view>
+  <!-- 楼层结束 -->
+</view>
